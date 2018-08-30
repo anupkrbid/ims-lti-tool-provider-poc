@@ -1,0 +1,28 @@
+{
+  "name": "ims-lti-tool-provider-poc",
+  "version": "1.0.0",
+  "description": "ims-lti-tool-provider-poc",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anupkrbid/ims-lti-tool-provider-poc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anupkrbid/ims-lti-tool-provider-poc/issues"
+  },
+  "homepage": "https://github.com/anupkrbid/ims-lti-tool-provider-poc#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
