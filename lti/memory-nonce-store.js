@@ -12,19 +12,14 @@ const EXPIRE_IN_SEC = 5 * 60;
 
 class MemoryNonceStore extends NonceStore {
   constructor() {
-    {
-      // Hack: trick Babel/TypeScript into allowing this before super.
-      if (false) {
-        super();
-      }
-      let thisFn = (() => {
-        return this;
-      }).toString();
-      let thisName = thisFn
-        .slice(thisFn.indexOf('return') + 6 + 1, thisFn.indexOf(';'))
-        .trim();
-      eval(`${thisName} = this;`);
-    }
+    // {
+    //   // Hack: trick Babel/TypeScript into allowing this before super.
+    //   if (false) { super();}
+    //   let thisFn = (() => { return this; }).toString();
+    //   let thisName = thisFn.slice(thisFn.indexOf('return') + 6 + 1, thisFn.indexOf(';')).trim();
+    //   eval(`${thisName} = this;`);
+    // }
+    super();
     this.used = Object.create(null);
   }
 

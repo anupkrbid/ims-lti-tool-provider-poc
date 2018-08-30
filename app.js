@@ -19,6 +19,6 @@ app.use(Cors);
 app.use('/api/v1/', LTIRoutes);
 
 app.use(errorHandler.badRequest);
-app.use(errorHandler.anyError);
+// app.use(errorHandler.anyError);
 
 module.exports = app;

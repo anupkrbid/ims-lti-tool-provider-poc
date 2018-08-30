@@ -68,7 +68,7 @@ class Provider {
         false
       );
     }
-
+    console.log(req.raw);
     return this._valid_oauth(req, body, callback);
   }
 
@@ -107,6 +107,7 @@ class Provider {
       body,
       this.consumer_secret
     );
+    console.log('sdfasdf', generated);
     const valid_signature = generated === body.oauth_signature;
     if (!valid_signature) {
       return callback(new errors.SignatureError('Invalid Signature'), false);
