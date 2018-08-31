@@ -1,11 +1,11 @@
-lti = require('../../../lti/ims-lti');
+const lti = require('../../../lti/ims-lti');
 
 exports.verifyLaunchRequest = (req, res, next) => {
   const consumer_key = req.body.oauth_consumer_key;
   const consumer_secret = 'secret';
   let signature_method, nonce_store;
 
-  provider = new lti.Provider(
+  const provider = new lti.Provider(
     consumer_key,
     consumer_secret,
     nonce_store,

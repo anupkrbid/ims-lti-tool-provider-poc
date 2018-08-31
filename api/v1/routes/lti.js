@@ -5,6 +5,7 @@ const LTIController = require('../controllers/lti');
 
 const router = express.Router();
 
+router.get('/', (req, res) => res.send('LTI Tool Provide!'));
 router.post('/lti/bookshelf', LTIController.verifyLaunchRequest);
 
 module.exports = router;

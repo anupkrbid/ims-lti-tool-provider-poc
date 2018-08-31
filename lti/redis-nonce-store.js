@@ -12,19 +12,7 @@ const EXPIRE_IN_SEC = 5 * 60;
 
 class RedisNonceStore extends NonceStore {
   constructor(redisClient) {
-    {
-      // Hack: trick Babel/TypeScript into allowing this before super.
-      if (false) {
-        super();
-      }
-      let thisFn = (() => {
-        return this;
-      }).toString();
-      let thisName = thisFn
-        .slice(thisFn.indexOf('return') + 6 + 1, thisFn.indexOf(';'))
-        .trim();
-      eval(`${thisName} = this;`);
-    }
+    super();
     if (typeof redisClient === 'string' && arguments.length === 2) {
       redisClient = arguments[1];
     }
@@ -32,7 +20,7 @@ class RedisNonceStore extends NonceStore {
   }
 
   isNew(nonce, timestamp, next) {
-    if (next == null) {
+    if (!next) {
       next = function() {};
     }
     if (
@@ -71,7 +59,7 @@ class RedisNonceStore extends NonceStore {
   }
 
   setUsed(nonce, timestamp, next) {
-    if (next == null) {
+    if (!next) {
       next = function() {};
     }
     this.redis.set(nonce, timestamp);

@@ -3,7 +3,7 @@ const extensions = require('./extensions');
 // Export the main object
 module.exports = {
   // Version of the library this is
-  version: '0.0.0',
+  version: '1.0.0',
 
   // Provider and Consumer classes
   Provider: require('./provider'),

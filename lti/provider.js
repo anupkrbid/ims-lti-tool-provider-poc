@@ -64,11 +64,11 @@ class Provider {
 
     if (!this._valid_parameters(body)) {
       return callback(
-        new errors.ParameterError('Invalid LTI parameters'),
+        new errors.ParameterError('Invalid LTI parameters').message,
         false
       );
     }
-    console.log(req.raw);
+
     return this._valid_oauth(req, body, callback);
   }
 
@@ -107,17 +107,23 @@ class Provider {
       body,
       this.consumer_secret
     );
-    console.log('sdfasdf', generated);
+
     const valid_signature = generated === body.oauth_signature;
     if (!valid_signature) {
-      return callback(new errors.SignatureError('Invalid Signature'), false);
+      return callback(
+        new errors.SignatureError('Invalid Signature').message,
+        false
+      );
     }
     return this.nonceStore.isNew(
       body.oauth_nonce,
       body.oauth_timestamp,
       function(err, valid) {
         if (!valid) {
-          return callback(new errors.NonceError('Expired nonce'), false);
+          return callback(
+            new errors.NonceError('Expired nonce').message,
+            false
+          );
         } else {
           return callback(null, true);
         }

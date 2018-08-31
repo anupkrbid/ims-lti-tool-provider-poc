@@ -1,6 +1,5 @@
 /*
  * decaffeinate suggestions:
- * DS001: Remove Babel/TypeScript constructor workaround
  * DS102: Remove unnecessary code created because of implicit returns
  * DS207: Consider shorter variations of null checks
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
@@ -12,19 +11,12 @@ const EXPIRE_IN_SEC = 5 * 60;
 
 class MemoryNonceStore extends NonceStore {
   constructor() {
-    // {
-    //   // Hack: trick Babel/TypeScript into allowing this before super.
-    //   if (false) { super();}
-    //   let thisFn = (() => { return this; }).toString();
-    //   let thisName = thisFn.slice(thisFn.indexOf('return') + 6 + 1, thisFn.indexOf(';')).trim();
-    //   eval(`${thisName} = this;`);
-    // }
     super();
     this.used = Object.create(null);
   }
 
   isNew(nonce, timestamp, next) {
-    if (next == null) {
+    if (!next) {
       next = function() {};
     }
     if (
@@ -64,7 +56,7 @@ class MemoryNonceStore extends NonceStore {
   }
 
   setUsed(nonce, timestamp, next) {
-    if (next == null) {
+    if (!next) {
       next = function() {};
     }
     this.used[nonce] = timestamp + EXPIRE_IN_SEC;
